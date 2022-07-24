@@ -17,7 +17,7 @@ import java.util.HashMap;
  * @author AidenFox
  */
 
-public class ConfigUtils {
+public abstract class ConfigUtils {
 	private File out;
 	private Boolean cached = false;
 	private String filename = null;

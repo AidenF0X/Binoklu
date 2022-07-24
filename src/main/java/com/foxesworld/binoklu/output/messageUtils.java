@@ -3,12 +3,12 @@ package com.foxesworld.binoklu.output;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.logging.Logger;
 /**
  *
  * @author AidenFox
  */
-public class messageUtils {
+public class messageUtils {   
  
         public static void sendInfo(String title, String msg, Integer index, boolean error){
             String space = " ";
@@ -21,6 +21,7 @@ public class messageUtils {
             if(error == true){
                 MSGtype = "ERROR";
             }
+
             System.out.println(space + date() + "[" + title + "/" + MSGtype + "]" + msg);
         }
         

@@ -4,6 +4,6 @@ package com.foxesworld.binoklu.commandLine;
  *
  * @author AidenFox
  */
-public class CommandProvider {
+public abstract class CommandProvider {
     //TODO
 }

@@ -2,6 +2,7 @@ com\foxesworld\binoklu\config\ConfigUtils.class
 com\foxesworld\binoklu\config\ConfigOptions$1.class
 com\foxesworld\binoklu\output\messageUtils.class
 com\foxesworld\binoklu\commandLine\CommandProvider.class
+com\foxesworld\binoklu\Binoklu$1.class
 com\foxesworld\binoklu\commandLine\CommandLineReader.class
 com\foxesworld\binoklu\config\ConfigOptions.class
 com\foxesworld\binoklu\Binoklu.class

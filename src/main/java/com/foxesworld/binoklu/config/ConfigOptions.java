@@ -3,8 +3,10 @@ package com.foxesworld.binoklu.config;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import static com.foxesworld.binoklu.Binoklu.config;
+import static com.foxesworld.binoklu.Binoklu.workDir;
 import com.foxesworld.binoklu.output.messageUtils;
 import static com.sun.org.apache.bcel.internal.util.SecuritySupport.getResourceAsStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
@@ -21,7 +23,7 @@ public class ConfigOptions {
     
     public static void setDefaults(String jsonFile) throws IOException {
             ObjectMapper mapper = new ObjectMapper(); 
-            InputStream is = getResourceAsStream("assets/config.json");
+            InputStream is = getResourceAsStream(jsonFile);
             TypeReference<HashMap<String,Object>> typeRef = new TypeReference<HashMap<String,Object>>() {};
 
             HashMap<String,Object> map = mapper.readValue(is, typeRef); 
@@ -76,5 +78,27 @@ public class ConfigOptions {
 			return config.getPropertyBoolean(key);
 		return value;
 	}
+        
+    public static String getWorkdir(Integer index){
+        String path;
+        switch(index){
+            case 1:
+                //In user's HOMEDIR
+                path = System.getProperty("user.home", "") + File.separator + workDir + File.separator;
+            break;
+            
+            case 2:
+                //On user's SYSTEMDRIVE
+                path = System.getenv("SYSTEMDRIVE") + File.separator + workDir + File.separator;
+            break;
+            
+            default:
+                //In a folder launched from
+                path = "";
+            break;
+        
+        }
+        return path;
+    }
         
 }
