@@ -4,7 +4,7 @@ import com.foxesworld.binoklu.commandLine.CommandLineReader;
 import com.foxesworld.binoklu.config.ConfigUtils;
 import com.foxesworld.binoklu.config.ConfigOptions;
 import static com.foxesworld.binoklu.config.ConfigOptions.getWorkdir;
-import static com.foxesworld.binoklu.output.messageUtils.sendInfo;
+import static com.foxesworld.binoklu.logger.Logger.LOG;
 import java.io.File;
 import java.io.IOException;
 
@@ -21,11 +21,14 @@ public class Binoklu {
     public static ConfigOptions cfo = new ConfigOptions();
 
     public static void main(String[] args) throws IOException {
-        sendInfo("Binoklu", "I'm born!!!", 0, true);
+       LOG.error(workDir + " was born!!!");
         config = new ConfigUtils(cfgName, new File(getWorkdir(3) + cfgPath)) {};
         config.load();
-        sendInfo(config.getPropertyString("author"), " Created at " + config.getPropertyString("created"), 0, false);
-        System.out.println("---------------------------------------------------------------------");
+        LOG.info(config.getPropertyString("author") + " Created me at " + config.getPropertyString("created"));
+        System.out.println("---------------------------[ Ready to serve! ]---------------------------");
+        //LOG.info("Server listening on port {}", 2345);
+        //LOG.error("Unable to display help/usage information");
+        //LOG.trace("A GGshnik");
         CommandLineReader CLR = new CommandLineReader();
     }
 

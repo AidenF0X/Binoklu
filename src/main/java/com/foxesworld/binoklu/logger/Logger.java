@@ -1,16 +1,15 @@
-package com.foxesworld.binoklu.output;
+package com.foxesworld.binoklu.logger;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Logger;
+import org.slf4j.LoggerFactory;
 /**
  *
  * @author AidenFox
  */
-public class messageUtils {   
+public class Logger {
+    
+    public static final org.slf4j.Logger LOG = LoggerFactory.getLogger("tes");
  
-        public static void sendInfo(String title, String msg, Integer index, boolean error){
+    /*    public static void sendInfo(String title, String msg, Integer index, boolean error){
             String space = " ";
             String MSGtype = "INFO";
             if(!index.equals(0)) {
@@ -23,12 +22,12 @@ public class messageUtils {
             }
 
             System.out.println(space + date() + "[" + title + "/" + MSGtype + "]" + msg);
-        }
+        } 
         
         public static String date() {
 		Date now = new Date();
 		DateFormat formatter = new SimpleDateFormat("[HH:mm:ss]");
 		String s = formatter.format(now);
 		return s;
-	} 
+	} */
 }

@@ -1,6 +1,6 @@
 package com.foxesworld.binoklu.config;
 
-import static com.foxesworld.binoklu.output.messageUtils.sendInfo;
+import static com.foxesworld.binoklu.logger.Logger.LOG;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -57,13 +57,13 @@ public abstract class ConfigUtils {
 	}
         
         public void load() {
-            sendInfo("CFG", "Loading " + filename, 0, false);
+            LOG.info("Loading config...");
 		if (filename != null && !out.exists()){
                     create(filename);
-                    sendInfo("CFG", "Creating " + filename, 4, false);
+                    LOG.info("  - Creating " + filename);
 
                 } else {
-                    sendInfo("CFG", "Config file exists "+getLineCount()+" lines", 4, false);
+                    LOG.info("  - Config file exists "+getLineCount()+" lines");
                 }
 		if (input != null && !out.exists())
 			create(input);
@@ -296,7 +296,7 @@ public abstract class ConfigUtils {
 	}
 
 	public void insertComment(String comment, Integer line) {
-            sendInfo("CFG", "Inserting a comment - #" + comment, 4, false);
+            LOG.info("Inserting a comment - #" + comment);
 		HashMap<Integer, String> contents = getAllFileContents();
 		if (line >= contents.size() + 1) {
 			return;

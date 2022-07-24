@@ -4,7 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import static com.foxesworld.binoklu.Binoklu.config;
 import static com.foxesworld.binoklu.Binoklu.workDir;
-import com.foxesworld.binoklu.output.messageUtils;
+import com.foxesworld.binoklu.logger.Logger;
+import static com.foxesworld.binoklu.logger.Logger.LOG;
 import static com.sun.org.apache.bcel.internal.util.SecuritySupport.getResourceAsStream;
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +20,7 @@ import java.util.Map;
  */
 public class ConfigOptions {
     
-    private static messageUtils msg;
+    private static Logger msg;
     
     public static void setDefaults(String jsonFile) throws IOException {
             ObjectMapper mapper = new ObjectMapper(); 
@@ -40,7 +41,7 @@ public class ConfigOptions {
 			//config.changeProperty(key, value);
                 } else {
 			config.put(key, value);
-                        msg.sendInfo("CFG", "Recording a missing key `" + key + "` with value `"+ value + "`", 4, false);
+                        LOG.info("  - Recording a missing key `" + key + "` with value `"+ value + "`");
                 }
 	}
 
