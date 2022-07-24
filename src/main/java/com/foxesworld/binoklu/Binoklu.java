@@ -26,9 +26,6 @@ public class Binoklu {
         config.load();
         LOG.info(config.getPropertyString("author") + " Created me at " + config.getPropertyString("created"));
         System.out.println("---------------------------[ Ready to serve! ]---------------------------");
-        //LOG.info("Server listening on port {}", 2345);
-        //LOG.error("Unable to display help/usage information");
-        //LOG.trace("A GGshnik");
         CommandLineReader CLR = new CommandLineReader();
     }
 

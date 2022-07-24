@@ -19,16 +19,17 @@ public final class CommandLineReader {
            while (line.equalsIgnoreCase(QUIT_COMMAND) == false) {
                System.out.print(PROMPT);
                line = in.readLine();
+               
                switch(line){
                    case "help":
                    case "?":
-                        System.out.println("No commands available! quit to exit");
+                        System.out.println("Need help!!!");
                     break;
                     
                    default:
                        System.out.println("Unknown command, for help write `help`");
                    break;
-               }
+               } 
            }
            in.close();
     }

@@ -78,6 +78,13 @@
             <artifactId>jopt-simple</artifactId>
             <version>5.0.2</version>
         </dependency>
+                <!-- IO stream utils -->
+
+        <!-- Null annotations -->
+
+        <!-- StringUtils -->
+
+        <!-- Content-type detection -->
     </dependencies>
     <repositories>
 	<repository>

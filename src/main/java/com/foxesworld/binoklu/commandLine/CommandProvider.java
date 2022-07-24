@@ -1,9 +1,20 @@
 package com.foxesworld.binoklu.commandLine;
 
+import java.io.IOException;
+
 /**
  *
  * @author AidenFox
  */
 public abstract class CommandProvider {
-    //TODO
+
+    private String Args;
+    private String OptionalArg;
+    private String ArgName;
+    
+    public CommandProvider() throws IOException{
+        //TODO
+    }
+    
+    
 }
