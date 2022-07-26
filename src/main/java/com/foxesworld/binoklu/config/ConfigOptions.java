@@ -27,7 +27,7 @@ public class ConfigOptions {
 
     private static final Logger LOG = LoggerFactory.getLogger(ConfigOptions.class);
     
-    public static void setDefaults() throws IOException {
+    private static void setDefaults() throws IOException {
             if(configInstance.getLineCount() <= 0) {
                 LOG.info("  - Filling " + ConfigUtils.classFullPath + " file, with " + ConfigUtils.cfgTemplate + " contents");
             }
@@ -72,7 +72,7 @@ public class ConfigOptions {
         return property;
     }
     
-    public static void setProperty(String key, Object value) {
+    protected static void setProperty(String key, Object value) {
 		if (!configInstance.checkProperty(key) || configInstance.getPropertyString(key) == null) {
 			configInstance.put(key, value);
                         LOG.info("  - Recording a missing key `" + key + "` with value `"+ value + "`");

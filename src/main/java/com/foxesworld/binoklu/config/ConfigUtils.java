@@ -31,7 +31,7 @@ public abstract class ConfigUtils extends Binoklu {
 	private InputStream input = null;
         private static final Logger LOG = LoggerFactory.getLogger(ConfigUtils.class);
 
-	public ConfigUtils(File fullPath, String cfgTemplate) {
+	protected ConfigUtils(File fullPath, String cfgTemplate) {
 		ConfigUtils.classFullPath = fullPath;
                 ConfigUtils.cfgTemplate = cfgTemplate;
                 this.load();
@@ -110,7 +110,7 @@ public abstract class ConfigUtils extends Binoklu {
 		return result;
 	}
 
-	public String getPropertyString(String property) {
+	protected String getPropertyString(String property) {
 		try {
 			if (cached)
 				return cache.get(property);
@@ -122,7 +122,7 @@ public abstract class ConfigUtils extends Binoklu {
 		return null;
 	}
 
-	public Integer getPropertyInteger(String property) {
+	protected Integer getPropertyInteger(String property) {
 		try {
 			if (this.cached)
 				return Integer.parseInt(cache.get(property));
@@ -134,7 +134,7 @@ public abstract class ConfigUtils extends Binoklu {
 		return null;
 	}
 
-	public Boolean getPropertyBoolean(String property) {
+	protected Boolean getPropertyBoolean(String property) {
 		try {
 			String result;
 			if (this.cached)
@@ -152,7 +152,7 @@ public abstract class ConfigUtils extends Binoklu {
 		return null;
 	}
 
-	public Double getPropertyDouble(String property) {
+	protected Double getPropertyDouble(String property) {
 		try {
 			String result;
 			if (cached)
@@ -168,7 +168,7 @@ public abstract class ConfigUtils extends Binoklu {
 		return null;
 	}
 
-	public Boolean checkProperty(String key) {
+	protected Boolean checkProperty(String key) {
 		String check;
 		try {
                     if (cached){
@@ -266,13 +266,13 @@ public abstract class ConfigUtils extends Binoklu {
 		flush(newContents);
 	}
 
-	public void put(String property, Object obj) {
+	protected void put(String property, Object obj) {
 		HashMap<Integer, String> contents = this.getAllFileContents();
 		contents.put(contents.size() + 1, property + ": " + obj.toString());
 		flush(contents);
 	}
 
-	public void put(String property, Object obj, Integer line) {
+	protected void put(String property, Object obj, Integer line) {
 		HashMap<Integer, String> contents = this.getAllFileContents();
 		if (line >= contents.size() + 1)
 			return;
@@ -304,7 +304,7 @@ public abstract class ConfigUtils extends Binoklu {
 		this.flush(contents);
 	}
 
-	public Integer getLineCount() {
+	protected Integer getLineCount() {
 		HashMap<Integer, String> contents = getAllFileContents();
 		return contents.size();
 	}
