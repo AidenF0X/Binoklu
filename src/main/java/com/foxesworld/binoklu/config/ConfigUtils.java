@@ -48,13 +48,13 @@ public abstract class ConfigUtils extends Binoklu {
                 }
 	}
         
-        public void load() {
+        private void load() {
             LOG.info("Loading " + classFullPath);
 		if (!classFullPath.exists()){
                     create();
                     LOG.info("  - Creating " + classFullPath);
                 } else {
-                    LOG.info("  - Config file exists "+getLineCount()+" lines");
+                    LOG.info("  - "+classFullPath+" file exists "+getLineCount()+" lines");
                 }
 
 		if (cached){
@@ -75,19 +75,18 @@ public abstract class ConfigUtils extends Binoklu {
 			} catch (Exception e) {
 			} finally {
 				try {
-					//input.close();
-				} catch (Exception ignored) {
-				}
+					input.close();
+				} catch (Exception ignored) {}
 				try {
-					if (output != null)
+					if (output != null) {
 						output.close();
-				} catch (Exception ignored) {
-				}
+                                        }
+				} catch (Exception ignored) {}
 			}
 	}
 
 	private HashMap<String, String> loadHashMap() {
-		HashMap<String, String> result = new HashMap<String, String>();
+		HashMap<String, String> result = new HashMap<>();
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(classFullPath));
@@ -106,8 +105,7 @@ public abstract class ConfigUtils extends Binoklu {
 		} finally {
 			try {
 				br.close();
-			} catch (Exception e) {
-			}
+			} catch (Exception e) {}
 		}
 		return result;
 	}
@@ -132,8 +130,7 @@ public abstract class ConfigUtils extends Binoklu {
 				HashMap<String, String> contents = loadHashMap();
 				return Integer.parseInt(contents.get(property));
 			}
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 		return null;
 	}
 
@@ -167,8 +164,7 @@ public abstract class ConfigUtils extends Binoklu {
 			if (!result.contains(""))
 				result += ".0";
 			return Double.parseDouble(result);
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 		return null;
 	}
 
@@ -194,18 +190,18 @@ public abstract class ConfigUtils extends Binoklu {
 		try {
 			this.delFile(classFullPath);
 			classFullPath.createNewFile();
-			BufferedWriter writer = new BufferedWriter(new FileWriter(classFullPath));
-			for (int i = 1; i <= newContents.size(); i++) {
-				String line = newContents.get(i);
-				if (line == null || line.split(": ").length == 1) {
-					writer.append("");
-					continue;
-				}
-				writer.append(line);
-				writer.append("\n");
-			}
-			writer.flush();
-			writer.close();
+                    try (BufferedWriter writer = new BufferedWriter(new FileWriter(classFullPath))) {
+                        for (int i = 1; i <= newContents.size(); i++) {
+                            String line = newContents.get(i);
+                            if (line == null || line.split(": ").length == 1) {
+                                writer.append("");
+                                continue;
+                            }
+                            writer.append(line);
+                            writer.append("\n");
+                        }
+                        writer.flush();
+                    }
 			if (cached)
 				load();
 		} catch (Exception e) {
@@ -214,12 +210,13 @@ public abstract class ConfigUtils extends Binoklu {
 	}
 
 	private void delFile(File file) {
-		if (file.exists())
+		if (file.exists()) {
 			file.delete();
+                }
 	}
 
 	private HashMap<Integer, String> getAllFileContents() {
-		HashMap<Integer, String> result = new HashMap<Integer, String>();
+		HashMap<Integer, String> result = new HashMap<>();
 		BufferedReader br = null;
 		Integer i = 1;
 		try {
@@ -240,8 +237,7 @@ public abstract class ConfigUtils extends Binoklu {
 		} finally {
 			try {
 				br.close();
-			} catch (Exception e) {
-			}
+			} catch (Exception e) {}
 		}
 
 		return result;
@@ -280,7 +276,7 @@ public abstract class ConfigUtils extends Binoklu {
 		HashMap<Integer, String> contents = this.getAllFileContents();
 		if (line >= contents.size() + 1)
 			return;
-		HashMap<Integer, String> newContents = new HashMap<Integer, String>();
+		HashMap<Integer, String> newContents = new HashMap<>();
 		for (int i = 1; i < line; i++)
 			newContents.put(i, contents.get(i));
 		newContents.put(line, property + ": " + obj.toString());

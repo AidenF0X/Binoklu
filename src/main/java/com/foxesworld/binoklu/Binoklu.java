@@ -24,7 +24,7 @@ public class Binoklu {
        LOG.error(workDir + " was born!!!");
         config = new ConfigUtils(new File(getWorkdir(3) + cfgPath), "assets/config.json"){};
         cfo = new ConfigOptions(config);
-        LOG.info(config.getPropertyString("author") + " Created me at " + config.getPropertyString("created"));
+        LOG.info(cfo.getProperty("author", "String") + " Created me at " + cfo.getProperty("created", "String"));
         System.out.println("---------------------------[ Ready to serve! ]---------------------------");
         CommandLineReader CLR = new CommandLineReader();
     }
