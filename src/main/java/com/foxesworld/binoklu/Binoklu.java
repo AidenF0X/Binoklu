@@ -18,12 +18,12 @@ public class Binoklu {
     private static final String cfgName = "main.cfg";
     private static final String cfgPath = "config" + File.separator + cfgName;
     public static ConfigUtils config;
-    public static ConfigOptions cfo = new ConfigOptions();
+    public static ConfigOptions cfo;
 
     public static void main(String[] args) throws IOException {
        LOG.error(workDir + " was born!!!");
-        config = new ConfigUtils(cfgName, new File(getWorkdir(3) + cfgPath)) {};
-        config.load();
+        config = new ConfigUtils(new File(getWorkdir(3) + cfgPath), "assets/config.json"){};
+        cfo = new ConfigOptions(config);
         LOG.info(config.getPropertyString("author") + " Created me at " + config.getPropertyString("created"));
         System.out.println("---------------------------[ Ready to serve! ]---------------------------");
         CommandLineReader CLR = new CommandLineReader();
